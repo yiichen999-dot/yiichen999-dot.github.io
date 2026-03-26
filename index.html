@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cintia Wang - 數位名片</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        creamy: {
+                            50: '#FFFEFA',
+                            100: '#FFFDF0',
+                            200: '#FFF7D1',
+                            300: '#FDEBAE',
+                            400: '#FCD873',
+                            500: '#FBC042',
+                            800: '#735118',
+                            900: '#4A330F',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 隱藏捲軸但保持可滑動 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-creamy-100 min-h-screen font-sans text-creamy-900 flex items-center justify-center p-4 sm:p-8 no-scrollbar relative overflow-x-hidden">
+
+    <!-- 裝飾背景光暈 -->
+    <div class="absolute top-0 left-0 w-64 h-64 bg-creamy-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-creamy-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-1/3 translate-y-1/3"></div>
+
+    <!-- 名片主體 -->
+    <main class="glass-card w-full max-w-sm rounded-[2rem] shadow-2xl shadow-creamy-200/50 overflow-hidden relative z-10 transition-transform duration-300 hover:shadow-creamy-300/40">
+        
+        <!-- 頂部色塊 -->
+        <div class="h-36 bg-gradient-to-br from-creamy-300 to-creamy-400 relative">
+            <!-- 裝飾曲線 (可選) -->
+            <svg class="absolute bottom-0 w-full h-12 text-white/85" preserveAspectRatio="none" viewBox="0 0 1440 74" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,56 C288,96 576,96 864,56 C1152,16 1440,16 1440,16 L1440,74 L0,74 Z"></path>
+            </svg>
+        </div>
+
+        <!-- 大頭照區 -->
+        <div class="relative px-6 -mt-16 text-center">
+            <div class="inline-block relative">
+                <!-- 加入 onerror 處理：如果找不到圖片，就隱藏圖片並顯示下方的備用頭像 -->
+                <img src="profile.jpg" alt="Cintia Wang" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md bg-creamy-50 relative z-10" onerror="this.style.display='none'; document.getElementById('fallback-avatar').style.display='flex';">
+                
+                <!-- 備用頭像 (預設隱藏，圖片讀取失敗時顯示) -->
+                <div id="fallback-avatar" class="hidden w-32 h-32 rounded-full border-4 border-white shadow-md bg-creamy-200 text-creamy-800 items-center justify-center text-5xl font-bold relative z-10">
+                    C
+                </div>
+
+                <!-- 線上綠點狀態 -->
+                <div class="absolute bottom-2 right-3 w-4 h-4 bg-green-500 border-2 border-white rounded-full z-20"></div>
+            </div>
+            
+            <h1 class="text-2xl font-bold mt-3 text-creamy-900 tracking-wide">Cintia Wang</h1>
+            <p class="text-sm font-medium text-creamy-800 mt-1">Sales Assistant</p>
+            <p class="text-xs font-semibold text-creamy-800/70 mt-0.5 tracking-wider uppercase">HUO SHIN ENTERPRISE</p>
+        </div>
+
+        <!-- 基本聯絡資訊區 -->
+        <div class="px-8 mt-6 space-y-4">
+            <!-- Email -->
+            <a href="mailto:yiichen999@gmail.com" class="flex items-center group">
+                <div class="w-10 h-10 rounded-full bg-creamy-100 flex items-center justify-center text-creamy-500 group-hover:bg-creamy-400 group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <p class="text-xs text-gray-400 font-medium">Email</p>
+                    <p class="text-sm font-medium text-gray-700 group-hover:text-creamy-800 transition-colors">yiichen999@gmail.com</p>
+                </div>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+886960578328" class="flex items-center group">
+                <div class="w-10 h-10 rounded-full bg-creamy-100 flex items-center justify-center text-creamy-500 group-hover:bg-creamy-400 group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <p class="text-xs text-gray-400 font-medium">Phone</p>
+                    <p class="text-sm font-medium text-gray-700 group-hover:text-creamy-800 transition-colors">+886 960 578 328</p>
+                </div>
+            </a>
+
+            <!-- Location -->
+            <div class="flex items-center group">
+                <div class="w-10 h-10 rounded-full bg-creamy-100 flex items-center justify-center text-creamy-500 shadow-sm">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <p class="text-xs text-gray-400 font-medium">Location</p>
+                    <p class="text-sm font-medium text-gray-700">Changhua, Taiwan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-8 my-5">
+            <hr class="border-creamy-200">
+        </div>
+
+        <!-- 社群與快速連結按鈕區 -->
+        <div class="px-6 pb-8 space-y-3">
+            
+            <!-- WhatsApp - Personal -->
+            <a href="https://wa.me/886960578328" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center p-3 bg-white rounded-2xl shadow-sm border border-creamy-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-[#E8F8F5] text-[#25D366] flex items-center justify-center text-2xl group-hover:bg-[#25D366] group-hover:text-white transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-bold text-gray-800">WhatsApp</h3>
+                    <p class="text-xs text-gray-500">Cintia Wang</p>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-creamy-50 flex items-center justify-center text-gray-400 group-hover:text-creamy-500 group-hover:bg-creamy-100 transition-colors">
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- WhatsApp - Company -->
+            <a href="https://wa.me/886938608677" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center p-3 bg-white rounded-2xl shadow-sm border border-creamy-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-[#E8F8F5] text-[#25D366] flex items-center justify-center text-2xl group-hover:bg-[#25D366] group-hover:text-white transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-bold text-gray-800">WhatsApp</h3>
+                    <p class="text-xs text-gray-500">WLK OIL SEALS</p>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-creamy-50 flex items-center justify-center text-gray-400 group-hover:text-creamy-500 group-hover:bg-creamy-100 transition-colors">
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/cintia-wang-6b4805359" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center p-3 bg-white rounded-2xl shadow-sm border border-creamy-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-[#E8F4F9] text-[#0A66C2] flex items-center justify-center text-2xl group-hover:bg-[#0A66C2] group-hover:text-white transition-colors">
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-bold text-gray-800">LinkedIn</h3>
+                    <p class="text-xs text-gray-500">Connect with me</p>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-creamy-50 flex items-center justify-center text-gray-400 group-hover:text-creamy-500 group-hover:bg-creamy-100 transition-colors">
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+</body>
+</html>
